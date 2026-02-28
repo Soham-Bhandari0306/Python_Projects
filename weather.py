@@ -1,8 +1,13 @@
 import requests
+import os
 
 city = input("Enter city name: ")
 
-api_key = "b04d4aa18982c2dc41a3beaca2397713"
+api_key = os.getenv("OPENWEATHER_API_KEY")
+
+if not api_key:
+    print("API key not found! Please set the environment variable.")
+    exit()
 
 url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
 
